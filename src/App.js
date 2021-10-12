@@ -7,37 +7,40 @@ import NotFound from "./components/NotFound/NotFound";
 import OrderReview from "./components/OrderReview/OrderReview";
 import PlaceOrder from "./components/PlaceOrder/PlaceOrder";
 import Shop from "./components/Shop/Shop";
+import AuthProvider from "./context/AuthProvider";
+import initFirebaseApp from "./firebase/init.firebase";
 
+initFirebaseApp();
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <Router>
         <Header></Header>
         <Switch>
           <Route exact path="/">
-            <Shop></Shop>
+            <Shop />
           </Route>
           <Route path="/shop">
-            <Shop></Shop>
+            <Shop />
           </Route>
           <Route path="/review">
-            <OrderReview></OrderReview>
+            <OrderReview />
           </Route>
           <Route path="/inventory">
-            <Inventory></Inventory>
+            <Inventory />
           </Route>
           <Route path="/placeorder">
-            <PlaceOrder></PlaceOrder>
+            <PlaceOrder />
           </Route>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="*">
-            <NotFound></NotFound>
+            <NotFound />
           </Route>
         </Switch>
       </Router>
-    </div>
+    </AuthProvider>
   );
 }
 

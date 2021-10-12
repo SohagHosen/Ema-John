@@ -1,17 +1,27 @@
-.search-container{
-    background-color: rgba(0, 0, 0, 0.85);
-    text-align: center;
-    line-height: 40px;
+.search-container {
+  background-color: rgba(0, 0, 0, 0.85);
+  text-align: center;
+  line-height: 40px;
 }
-.search-container input{
-    width: 75%;
+.search-container input {
+  width: 75%;
 }
-.shop-container{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+.shop-container {
+  margin-top: -300px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
-.product-container{
-    border-right: 1px solid lightgray;
-    margin-right: 5px;
-    margin-left: 50px;
+.product-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 1)
+    ),
+    url(https://i.imgur.com/ZWE4tCk.jpg?1);
+  height: 600px;
 }

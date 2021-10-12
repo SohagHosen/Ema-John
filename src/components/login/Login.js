@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-
+import useFirebase from "../../hooks/useFirebase";
 function Login() {
   const [register, setRegister] = useState(false);
+  const { signInWithGoogle } = useFirebase();
   return (
     <div className="flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-4">
@@ -123,6 +124,7 @@ function Login() {
         )}
         <hr />
         <button
+          onClick={signInWithGoogle}
           type="submit"
           className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
         >
