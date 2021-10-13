@@ -10,7 +10,7 @@ const OrderReview = () => {
   const [products] = useProducts();
   const [cart, setCart] = useCart(products);
   const history = useHistory();
-
+  console.log(cart);
   const handleRemove = (key) => {
     const newCart = cart.filter((product) => product.key !== key);
     setCart(newCart);
@@ -35,11 +35,11 @@ const OrderReview = () => {
         ))}
       </div>
       <div className="cart-container">
-        <Cart cart={cart}>
+        {/* <Cart cart={cart}>
           <button onClick={handlePlaceOrder} className="btn-regular">
             Place Order
           </button>
-        </Cart>
+        </Cart> */}
       </div>
     </div>
   );

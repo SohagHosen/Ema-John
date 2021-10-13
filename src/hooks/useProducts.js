@@ -6,7 +6,10 @@ const useProducts = () => {
   useEffect(() => {
     fetch("./products.json")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        const shuffle = data.sort(() => 0.5 - Math.random());
+        setProducts(shuffle);
+      });
   }, []);
   return [products, setProducts];
 };

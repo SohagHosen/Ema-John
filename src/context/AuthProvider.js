@@ -1,22 +1,24 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 import useFirebase from "../hooks/useFirebase";
+import useProducts from "../hooks/useProducts";
 
 export const AuthContext = createContext();
 function AuthProvider({ children }) {
+  const [cart, setCart] = useState([]);
   const auth = useFirebase();
-  const [products, setProducts] = useState([]);
+  const [products] = useProducts([]);
   const [displayProducts, setDisplayProducts] = useState([]);
-  useEffect(() => {
-    fetch("./products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const shuffle = data.sort(() => 0.5 - Math.random());
-        setProducts(shuffle);
-      });
-  }, []);
+
   return (
     <AuthContext.Provider
-      value={{ auth, products, displayProducts, setDisplayProducts }}
+      value={{
+        auth,
+        products,
+        cart,
+        setCart,
+        displayProducts,
+        setDisplayProducts,
+      }}
     >
       {children}
     </AuthContext.Provider>

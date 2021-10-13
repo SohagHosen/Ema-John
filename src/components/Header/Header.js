@@ -4,11 +4,13 @@ import lightLogo from "../../images/light-logo.png";
 import "./Header.css";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useFirebase from "../../hooks/useFirebase";
 import useAuth from "../../hooks/useAuth";
+import Cart from "../Cart/Cart";
+import useCart from "../../hooks/useCart";
 const Header = () => {
   const [toggle, setToggle] = useState(false);
   const { auth, products, setDisplayProducts } = useAuth();
+  const [cart] = useCart(products);
   const handleSearch = (event) => {
     const searchText = event.target.value;
 
@@ -24,7 +26,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-800 ">
+    <header className="bg-gray-800 fixed w-full z-10">
       <nav className="px-2 sm:px-5  md:px-10 flex items-center justify-between flex-wrap  text-white py-3 ">
         <div className="block md:hidden">
           <button
@@ -39,7 +41,8 @@ const Header = () => {
         </div>
         {auth.user.email ? (
           <div className="md:order-last inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
-            <div className="relative">
+            <div className="relative flex">
+              <Cart cart={cart} />
               <div className="">
                 <button
                   type="button"
