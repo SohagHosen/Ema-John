@@ -4,28 +4,18 @@ import { addToDb } from "../../utilities/fakedb";
 import "./Shop.css";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
+import { useHistory } from "react-router-dom";
 
 const Shop = () => {
   const { products, displayProducts, setDisplayProducts } = useAuth();
-  const [cart, setCart] = useCart();
+  const history = useHistory();
   useEffect(() => {
     setDisplayProducts(products.slice(0, 16));
   }, [displayProducts]);
-  const handleAddToCart = (product) => {
-    const exists = cart.find((pd) => pd.key === product.key);
-    let newCart = [];
-    if (exists) {
-      const rest = cart.filter((pd) => pd.key !== product.key);
-      exists.quantity = exists.quantity + 1;
-      newCart = [...rest, product];
-    } else {
-      product.quantity = 1;
-      newCart = [...cart, product];
-    }
-    setCart(newCart);
-    addToDb(product.key);
-  };
 
+  const productDetails = (key) => {
+    history.push(`/product/details/${key}`);
+  };
   return (
     <>
       <header className="header text-center">
@@ -42,7 +32,7 @@ const Shop = () => {
             <Product
               key={product.key}
               product={product}
-              handleAddToCart={handleAddToCart}
+              productDetails={productDetails}
             ></Product>
           ))}
         </div>

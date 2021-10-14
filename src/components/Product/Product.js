@@ -4,7 +4,7 @@ import { faStar, faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regular } from "@fortawesome/free-regular-svg-icons";
 import "./Product.css";
 
-const Product = ({ handleAddToCart, product }) => {
+const Product = ({ productDetails, product }) => {
   // console.log(props);
   const { name, img, seller, price, stock, star } = product;
 
@@ -46,10 +46,10 @@ const Product = ({ handleAddToCart, product }) => {
             )}
           </span>
           <button
-            onClick={() => handleAddToCart(product)}
+            onClick={() => productDetails(product.key)}
             className="bg-yellow-500 text-white font-bold rounded px-3 py-2"
           >
-            <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
+            Details
           </button>
         </div>
       </div>

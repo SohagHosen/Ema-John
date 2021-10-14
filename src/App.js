@@ -10,6 +10,7 @@ import Shop from "./components/Shop/Shop";
 import AuthProvider from "./context/AuthProvider";
 import initFirebaseApp from "./firebase/init.firebase";
 import Footer from "./components/footer/Footer";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 initFirebaseApp();
 function App() {
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/review">
             <OrderReview />
+          </Route>
+          <Route path="/product/details/:key">
+            <ProductDetails />
           </Route>
           <Route path="/inventory">
             <Inventory />

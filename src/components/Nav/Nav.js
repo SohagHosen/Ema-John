@@ -108,7 +108,7 @@ const Nav = () => {
               Shop
             </NavLink>
             <NavLink
-              to="review"
+              to="/review"
               activeClassName="bg-gray-900 hover:bg-gray-900"
               className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4"
             >

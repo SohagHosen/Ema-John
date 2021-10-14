@@ -1,8 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router";
 
 const ReviewItem = ({ product, handleRemove }) => {
   const { name, price, key, img } = product;
-  console.log(handleRemove);
+  const history = useHistory();
+  const handleDetails = () => {
+    history.push(`/product/details/${key}`);
+  };
   return (
     <div class="p-5">
       <div class="w-full lg:flex">
@@ -22,7 +26,10 @@ const ReviewItem = ({ product, handleRemove }) => {
               >
                 Remove
               </button>
-              <button className="bg-green-500 px-5 rounded text-white font-bold mt-3 py-1">
+              <button
+                onClick={handleDetails}
+                className="bg-green-500 px-5 rounded text-white font-bold mt-3 py-1"
+              >
                 Details
               </button>
             </div>
