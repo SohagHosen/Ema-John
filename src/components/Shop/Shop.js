@@ -49,13 +49,6 @@ const Shop = () => {
             ></Product>
           ))}
         </div>
-        {/* <div className="cart-container">
-          <Cart cart={cart}>
-            <Link to="/review">
-              <button className="btn-regular">Review Your Order</button>
-            </Link>
-          </Cart>
-        </div> */}
       </div>
     </>
   );

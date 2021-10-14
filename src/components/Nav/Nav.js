@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import lightLogo from "../../images/light-logo.png";
 import "./Header.css";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ const Nav = () => {
   const [toggleNav, setToggleNav] = useState(false);
   const [toggleLogOut, setToggleLogOut] = useState(false);
   const { auth, products, setDisplayProducts } = useAuth();
-
+  const { logOut } = auth;
   const handleSearch = (event) => {
     const searchText = event.target.value;
 
@@ -37,7 +37,9 @@ const Nav = () => {
           </button>
         </div>
         <div className="flex items-center flex-shrink-0 text-white md:mr-6">
-          <img className="h-10" src={lightLogo} alt="" />
+          <Link to="/">
+            <img className="h-10" src={lightLogo} alt="" />
+          </Link>
         </div>
         {auth.user.email ? (
           <div className="md:order-last inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
@@ -71,7 +73,8 @@ const Nav = () => {
                 aria-orientation="vertical"
               >
                 <button
-                  className="block  px-4 py-2 text-black"
+                  onClick={logOut}
+                  className="block w-full  px-4 py-1 text-black"
                   role="menuitem"
                   id="user-menu-item-2"
                 >
