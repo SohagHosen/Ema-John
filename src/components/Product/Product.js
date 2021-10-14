@@ -47,7 +47,7 @@ const Product = ({ handleAddToCart, product }) => {
           </span>
           <button
             onClick={() => handleAddToCart(product)}
-            className="bg-yellow-100 px-3 py-2"
+            className="bg-yellow-500 text-white font-bold rounded px-3 py-2"
           >
             <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
           </button>

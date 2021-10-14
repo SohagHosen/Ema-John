@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import useCart from "../../hooks/useCart";
 import "./Cart.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 const Cart = () => {
+  const [toggleCart, setToggleCart] = useState(false);
+
   const [cart] = useCart();
   let totalQuantity = 0;
   let total = 0;
@@ -18,32 +21,52 @@ const Cart = () => {
   const tax = (total + shipping) * 0.1;
   const grandTotal = total + shipping + tax;
   return (
-    <div>
-      <div className=" text-black">
-        <div className="relative ">
-          <button className="relative z-10  p-2 focus:outline-none">
-            <span className="relative inline-block">
-              <svg
-                className="w-6 h-6 text-gray-700 fill-current"
-                viewBox="0 0 20 20"
-              >
-                <path d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"></path>
-              </svg>
-              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                {totalQuantity}
-              </span>
+    <div className=" mr-3 text-black">
+      <div className="relative ">
+        <button
+          onClick={() => setToggleCart(!toggleCart)}
+          className="relative z-10  p-2 focus:outline-none"
+        >
+          <span className="relative inline-block">
+            <FontAwesomeIcon
+              className="text-2xl text-white"
+              icon={faCartPlus}
+            />
+            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+              {totalQuantity}
             </span>
-          </button>
+          </span>
+        </button>
 
-          <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
-            <h3>Order Summary</h3>
-            <h5>Items Ordered: {cart.length}</h5>
-            <br />
-            <p>Total: {total.toFixed(2)}</p>
-            <p>Shipping: {shipping}</p>
-            <p>tax: {tax.toFixed(2)}</p>
-            <p>Grand Total: {grandTotal.toFixed(2)}</p>
+        <div
+          className={`${
+            toggleCart ? "block" : "hidden"
+          } absolute right-0  p-2 w-56 bg-white rounded-md shadow-xl z-20`}
+        >
+          <h3 className="text-2xl text-center">Order Summary</h3>
+          <div className=" flex justify-between">
+            <h5 className="text-xl ">Items Ordered</h5>
+            <h5 className="text-xl ">{cart.length}</h5>
           </div>
+          <div className="flex justify-between">
+            <p className="text-md ">Subtotal</p>
+            <p className="text-md ">{total.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between">
+            <p className="text-md ">Shipping</p>
+            <p className="text-md ">{shipping}</p>
+          </div>
+          <div className="flex justify-between">
+            <p className="text-md ">Tax</p>
+            <p className="text-md ">{tax.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between">
+            <p className="text-md ">Total</p>
+            <p className="text-md ">{grandTotal.toFixed(2)}</p>
+          </div>
+          <button className="px-4 w-full py-1 bg-yellow-500 rounded text-white font-bold mt-3">
+            Review Items
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header/Header";
+import Nav from "./components/Nav/Nav";
 import Inventory from "./components/Inventory/Inventory";
 import Login from "./components/login/Login";
 import NotFound from "./components/NotFound/NotFound";
@@ -15,7 +15,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Header></Header>
+        <Nav />
         <Switch>
           <Route exact path="/">
             <Shop />

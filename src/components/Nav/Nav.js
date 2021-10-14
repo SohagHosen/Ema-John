@@ -6,11 +6,10 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAuth from "../../hooks/useAuth";
 import Cart from "../Cart/Cart";
-import useCart from "../../hooks/useCart";
-const Header = () => {
-  const [toggle, setToggle] = useState(false);
+const Nav = () => {
+  const [toggleNav, setToggleNav] = useState(false);
   const { auth, products, setDisplayProducts } = useAuth();
-  const [cart] = useCart(products);
+
   const handleSearch = (event) => {
     const searchText = event.target.value;
 
@@ -30,7 +29,7 @@ const Header = () => {
       <nav className="px-2 sm:px-5  md:px-10 flex items-center justify-between flex-wrap  text-white py-3 ">
         <div className="block md:hidden">
           <button
-            onClick={() => setToggle(!toggle)}
+            onClick={() => setToggleNav(!toggleNav)}
             className="flex items-center px-3 py-2 border border-opacity-25 rounded   hover:text-white hover:border-white"
           >
             <FontAwesomeIcon icon={faBars} />
@@ -42,7 +41,7 @@ const Header = () => {
         {auth.user.email ? (
           <div className="md:order-last inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto  sm:pr-0">
             <div className="relative flex">
-              <Cart cart={cart} />
+              <Cart />
               <div className="">
                 <button
                   type="button"
@@ -88,7 +87,7 @@ const Header = () => {
         )}
         <div
           className={`${
-            toggle ? "block" : "hidden"
+            toggleNav ? "block" : "hidden"
           } w-full  flex-grow md:flex md:items-center md:w-auto`}
         >
           <div className="text-sm md:flex-grow">
@@ -121,4 +120,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Nav;

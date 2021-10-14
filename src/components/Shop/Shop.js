@@ -31,9 +31,16 @@ const Shop = () => {
 
   return (
     <>
-      <header className="header"></header>
-      <div className="shop-container">
-        <div className="product-container">
+      <header className="header text-center">
+        <h1 className="text-white text-5xl pt-36 font-bold">
+          Shop Computers & Accessories
+        </h1>
+        <p className="text-white text-xl mt-2">
+          We ship over 45 million products around the world
+        </p>
+      </header>
+      <div className=" -mt-60">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gay-2">
           {displayProducts.map((product) => (
             <Product
               key={product.key}
