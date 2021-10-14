@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import Cart from "../Cart/Cart";
 const Nav = () => {
   const [toggleNav, setToggleNav] = useState(false);
+  const [toggleLogOut, setToggleLogOut] = useState(false);
   const { auth, products, setDisplayProducts } = useAuth();
 
   const handleSearch = (event) => {
@@ -44,6 +45,7 @@ const Nav = () => {
               <Cart />
               <div className="">
                 <button
+                  onClick={() => setToggleLogOut(!toggleLogOut)}
                   type="button"
                   className="bg-gray-900 text-white flex items-center justify-center  text-sm rounded-full focus:outline-none "
                   id="user-menu-button"
@@ -60,8 +62,11 @@ const Nav = () => {
                   />
                 </button>
               </div>
+
               <div
-                className="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white "
+                className={`${
+                  toggleLogOut ? "block" : "hidden"
+                }  origin-top-right absolute right-0 mt-10 w-48 rounded-md shadow-lg py-1 bg-white`}
                 role="menu"
                 aria-orientation="vertical"
               >
