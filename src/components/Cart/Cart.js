@@ -21,17 +21,14 @@ const Cart = () => {
   const tax = (total + shipping) * 0.1;
   const grandTotal = total + shipping + tax;
   return (
-    <div className=" mr-3 text-black">
-      <div className="relative ">
+    <div className=" mr-5 flex items-center mt-2 text-black">
+      <div className="relative">
         <button
           onClick={() => setToggleCart(!toggleCart)}
-          className="relative z-10  p-2 focus:outline-none"
+          className="relative  z-10   focus:outline-none"
         >
           <span className="relative inline-block">
-            <FontAwesomeIcon
-              className="text-2xl text-white"
-              icon={faCartPlus}
-            />
+            <FontAwesomeIcon className="text-xl text-white" icon={faCartPlus} />
             <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
               {totalQuantity}
             </span>
