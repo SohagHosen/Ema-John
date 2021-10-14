@@ -11,14 +11,13 @@ function ProductDetails() {
   let { key } = useParams();
   const { products } = useAuth();
   const [product, setProduct] = useState({});
-  const [cart, setCart] = useCart();
 
   useEffect(() => {
-    const product = products.find((product) => product.key === key);
-    setProduct(product);
+    const pd = products.find((product) => product.key === key);
+    pd ? setProduct(pd) : setProduct({});
   }, [product]);
-  const { features, img, name, price, star } = product;
 
+  const [cart, setCart] = useCart();
   const handleAddToCart = () => {
     const exists = cart.find((pd) => pd.key === product.key);
     let newCart = [];
@@ -39,19 +38,19 @@ function ProductDetails() {
         <section class="text-gray-700 body-font overflow-hidden bg-white">
           <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
-              <img alt="product" class="lg:w-1/2 w-full" src={img} />
+              <img alt="product" class="lg:w-1/2 w-full" src={product.img} />
               <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                 <h2 class="text-sm title-font text-gray-500 tracking-widest">
                   BRAND NAME
                 </h2>
                 <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                  {name}
+                  {product.name}
                 </h1>
                 <div class="flex my-4">
                   <span class="flex items-center">
                     <span>
                       {[...Array(5)].map((i, index) =>
-                        star > index ? (
+                        product.star > index ? (
                           <FontAwesomeIcon
                             key={index}
                             className="text-yellow-300 text-xl"
@@ -66,12 +65,14 @@ function ProductDetails() {
                         )
                       )}
                     </span>
-                    <span class="text-gray-600 ml-3">{star} Reviews</span>
+                    <span class="text-gray-600 ml-3">
+                      {product.star} Reviews
+                    </span>
                   </span>
                 </div>
                 <section class="leading-relaxed">
                   <h3 className="text-2xl">Product features</h3>
-                  {features.map((ft) => (
+                  {product.features.map((ft) => (
                     <div className="flex justify-between">
                       <p>{ft.description}</p>
                       <p>{ft.value}</p>
@@ -81,7 +82,7 @@ function ProductDetails() {
                 <hr className="my-5" />
                 <div class="flex">
                   <span class="title-font font-medium text-2xl text-gray-900">
-                    ${price}
+                    ${product.price}
                   </span>
                   <button
                     onClick={handleAddToCart}
@@ -94,9 +95,7 @@ function ProductDetails() {
             </div>
           </div>
         </section>
-      ) : (
-        "null"
-      )}
+      ) : null}
     </>
   );
 }

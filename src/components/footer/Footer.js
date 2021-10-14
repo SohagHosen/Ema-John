@@ -22,9 +22,6 @@ function Footer() {
               <Link to="/inventory" class="px-4 text-sm">
                 Inventory
               </Link>
-              <Link to="/login" class="px-4 text-sm">
-                Login
-              </Link>
             </div>
           </div>
         </div>
