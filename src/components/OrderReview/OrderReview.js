@@ -24,22 +24,15 @@ const OrderReview = () => {
   };
 
   return (
-    <div className="shop-container">
-      <div className="product-container">
+    <div className="pt-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 ">
         {cart.map((product) => (
           <ReviewItem
             key={product.key}
             product={product}
             handleRemove={handleRemove}
-          ></ReviewItem>
+          />
         ))}
-      </div>
-      <div className="cart-container">
-        {/* <Cart cart={cart}>
-          <button onClick={handlePlaceOrder} className="btn-regular">
-            Place Order
-          </button>
-        </Cart> */}
       </div>
     </div>
   );
