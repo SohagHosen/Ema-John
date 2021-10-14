@@ -9,6 +9,7 @@ import PlaceOrder from "./components/PlaceOrder/PlaceOrder";
 import Shop from "./components/Shop/Shop";
 import AuthProvider from "./context/AuthProvider";
 import initFirebaseApp from "./firebase/init.firebase";
+import Footer from "./components/footer/Footer";
 
 initFirebaseApp();
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </AuthProvider>
   );

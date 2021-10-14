@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import { addToDb } from "../../utilities/fakedb";
 import "./Shop.css";
@@ -8,11 +8,9 @@ import useAuth from "../../hooks/useAuth";
 const Shop = () => {
   const { products, displayProducts, setDisplayProducts } = useAuth();
   const [cart, setCart] = useCart();
-
   useEffect(() => {
-    setDisplayProducts(products);
-  }, [products]);
-
+    setDisplayProducts(products.slice(0, 16));
+  }, [displayProducts]);
   const handleAddToCart = (product) => {
     const exists = cart.find((pd) => pd.key === product.key);
     let newCart = [];
@@ -25,7 +23,6 @@ const Shop = () => {
       newCart = [...cart, product];
     }
     setCart(newCart);
-    // save to local storage (for now)
     addToDb(product.key);
   };
 
@@ -39,7 +36,7 @@ const Shop = () => {
           We ship over 45 million products around the world
         </p>
       </header>
-      <div className=" -mt-60">
+      <div className=" -mt-72 mb-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gay-2">
           {displayProducts.map((product) => (
             <Product

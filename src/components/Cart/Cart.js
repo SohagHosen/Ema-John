@@ -3,8 +3,13 @@ import useCart from "../../hooks/useCart";
 import "./Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router";
 const Cart = () => {
   const [toggleCart, setToggleCart] = useState(false);
+  const history = useHistory();
+  function handleClick() {
+    history.push("/review");
+  }
 
   const [cart] = useCart();
   let totalQuantity = 0;
@@ -61,7 +66,10 @@ const Cart = () => {
             <p className="text-md">Total</p>
             <p className="text-md">{grandTotal.toFixed(2)}</p>
           </div>
-          <button className="px-4 w-full py-1 bg-yellow-500 rounded text-white font-bold mt-3">
+          <button
+            onClick={handleClick}
+            className="px-4 w-full py-1 bg-yellow-500 rounded text-white font-bold mt-3"
+          >
             Review Items
           </button>
         </div>
